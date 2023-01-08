@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.grey,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(title: 'HazBandeja APP'),
@@ -48,7 +48,21 @@ class _MyHomePageState extends State<MyHomePage> {
       wingTriangleB = formulas.wingTriangleB;
     });
   }
+    void _reset() {
+      setState(() {
+        sidec = 0;
+        angleA = 0;
+        angleB = 0;
+        wingTriangleA = 0;
+        wingTriangleB = 0;
+        sidea.clear();
+        sideb.clear();
+        height.clear();
+        width.clear();
+      });
+    }
 
+  // TODO: UI
   TextEditingController sidea = TextEditingController();
   TextEditingController sideb = TextEditingController();
   TextEditingController height = TextEditingController();
@@ -61,58 +75,70 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'Introduce los datos de la bandeja:',
-            ),
-            TextField(
-              controller: sidea,
-              keyboardType: TextInputType.number,
-            ),
-            TextField(
-              controller: sideb,
-              keyboardType: TextInputType.number,
-            ),
-            TextField(
-              controller: height,
-              keyboardType: TextInputType.number,
-            ),
-            TextField(
-              controller: width,
-              keyboardType: TextInputType.number,
-            ),
-            Text('Desarrollo'),
-            Text(
-              sidec.toStringAsFixed(2),
-              style: Theme.of(context).textTheme.headline4,
-            ),
-            Text('Ángulo A'),
-            Text(
-              angleA.toStringAsFixed(2),
-              style: Theme.of(context).textTheme.headline4,
-            ),
-            Text('Ángulo B'),
-            Text(
-              angleB.toStringAsFixed(2),
-              style: Theme.of(context).textTheme.headline4,
-            ),
-            Text('Triángulo sobre ala A'),
-            Text(
-              wingTriangleA.toStringAsFixed(2),
-              style: Theme.of(context).textTheme.headline4,
-            ),
-            Text('Triángulo sobre ala B'),
-            Text(
-              wingTriangleB.toStringAsFixed(2),
-              style: Theme.of(context).textTheme.headline4,
-            ),
-            ElevatedButton(
-              onPressed: _calculate,
-              child: Text('CALCULAR'),
-            )
-          ],
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                'Introduce los datos de la bandeja:',
+              ),
+              TextField(
+                controller: sidea,
+                keyboardType: TextInputType.number,
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.green),
+              ),
+              TextField(
+                controller: sideb,
+                keyboardType: TextInputType.number,
+                textAlign: TextAlign.center,
+              ),
+              TextField(
+                controller: height,
+                keyboardType: TextInputType.number,
+                textAlign: TextAlign.center,
+              ),
+              TextField(
+                controller: width,
+                keyboardType: TextInputType.number,
+                textAlign: TextAlign.center,
+              ),
+              Text('Desarrollo'),
+              Text(
+                sidec.toStringAsFixed(2),
+                style: Theme.of(context).textTheme.headline4,
+              ),
+              Text('Ángulo A'),
+              Text(
+                angleA.toStringAsFixed(2),
+                style: Theme.of(context).textTheme.headline4,
+              ),
+              Text('Ángulo B'),
+              Text(
+                angleB.toStringAsFixed(2),
+                style: Theme.of(context).textTheme.headline4,
+              ),
+              Text('Triángulo sobre ala A'),
+              Text(
+                wingTriangleA.toStringAsFixed(2),
+                style: Theme.of(context).textTheme.headline4,
+              ),
+              Text('Triángulo sobre ala B'),
+              Text(
+                wingTriangleB.toStringAsFixed(2),
+                style: Theme.of(context).textTheme.headline4,
+              ),
+              ElevatedButton(
+                onPressed: _calculate,
+                child: Text('CALCULAR'),
+              ),
+              ElevatedButton(
+                onPressed: _reset,
+                child: Text('RESET'),
+              )
+            ],
+          ),
         ),
       ),
     );

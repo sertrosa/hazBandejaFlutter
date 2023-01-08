@@ -20,10 +20,10 @@ void abC(double sidea, double sideb, double trayHeight, double trayWidth) {
   sidea = sidea;
   sideb = sideb;
 
-  // CALCULAMOS CATETO C
+  // SIDE C CALCULATE
   sidec = math.sqrt(math.pow(sidea, 2) +
       math.pow(sideb, 2) -
-      (2 * sidea * sideb) * (Angle.degrees(angleC).cos));
+      (2 * sidea * sideb) * (const Angle.degrees(angleC).cos));
 
   // CALCULAMOS ANGULOS A Y B
   angleA = degrees(math.acos(sideb / sidec));
